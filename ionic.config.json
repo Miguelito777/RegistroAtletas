@@ -1,0 +1,8 @@
+{
+  "name": "RegistroAtletas",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "8c53356a"
+}
