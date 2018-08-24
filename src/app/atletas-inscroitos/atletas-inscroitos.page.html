@@ -1,9 +1,24 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>AtletasInscroitos</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title text-center>
+        Atletas Inscritos
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content padding>
-
+    <ion-tabs color="success">
+        <ion-tab label="Music" icon="musical-note" ionNavDidChange="changeTabOne()">
+          One
+        </ion-tab>
+        <ion-tab label="Profile" icon="person" (click)="changeTabTwo()">
+          Two
+        </ion-tab>
+        <ion-tab label="people" icon="people" (click)="changeTabTree()">
+          Tree
+        </ion-tab>
+      </ion-tabs>
 </ion-content>

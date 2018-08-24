@@ -17,7 +17,11 @@ const routes: Routes = [
   },
   { path: 'InscripcionAtletas', loadChildren: './inscripcion-atletas/inscripcion-atletas.module#InscripcionAtletasPageModule' },
   { path: 'AtletasInscroitos', loadChildren: './atletas-inscroitos/atletas-inscroitos.module#AtletasInscroitosPageModule' },
-  { path: 'Reportes', loadChildren: './reportes/reportes.module#ReportesPageModule' }
+  { path: 'Reportes', loadChildren: './reportes/reportes.module#ReportesPageModule' },  { path: 'LibreMasculino', loadChildren: './libre-masculino/libre-masculino.module#LibreMasculinoPageModule' },
+  { path: 'LibreFemenino', loadChildren: './libre-femenino/libre-femenino.module#LibreFemeninoPageModule' },
+  { path: 'MasterMasculino', loadChildren: './master-masculino/master-masculino.module#MasterMasculinoPageModule' },
+  { path: 'Elite', loadChildren: './elite/elite.module#ElitePageModule' }
+
 ];
 
 @NgModule({

@@ -12,4 +12,13 @@ export class AtletasInscroitosPage implements OnInit {
   ngOnInit() {
   }
 
+  public changeTabOne() {
+    console.log("Click One");
+  }
+  public changeTabTwo() {
+    console.log("Click Two");
+  }
+  public changeTabTree() {
+    console.log("Click Tree");
+  }
 }

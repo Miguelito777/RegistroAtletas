@@ -21,8 +21,23 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'Atletas Inscritos',
-      url: '/AtletasInscroitos',
+      title: 'Categoria Libre Masculino',
+      url: '/LibreMasculino',
+      icon: 'list'
+    },
+    {
+      title: 'Categoria Libre Femenino',
+      url: '/LibreFemenino',
+      icon: 'list'
+    },
+    {
+      title: 'Categoria Master Masculino',
+      url: '/MasterMasculino',
+      icon: 'list'
+    },
+    {
+      title: 'Categoria Elite',
+      url: '/Elite',
       icon: 'list'
     },
     {
