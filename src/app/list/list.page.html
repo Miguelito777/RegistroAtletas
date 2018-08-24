@@ -8,9 +8,44 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-list>
+    <form>
+        <ion-list class="list list-ios hydrated">
+          <!-- <ion-item class="in-list item hydrated item-interactive item-input">
+            <ion-input type="text" class="in-item hydrated">
+              <input type="hidden" class="aux-input" name="ion-input-4" value="">
+            </ion-input>
+          </ion-item>
+          <ion-item class="in-list item hydrated item-interactive item-input">
+            <ion-input type="text" class="in-item hydrated">
+              <input type="hidden" class="aux-input" name="ion-input-5" value="">
+            </ion-input>
+          </ion-item> -->
+          <ion-item>
+              <ion-label>Default Label</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label position="floating">Floating Label</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label position="fixed">Fixed Label</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label position="stacked">Stacked Label</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+        </ion-list>
+        <div>
+          <ion-button type="submit" class="button button-ios button-block button-block-ios button-solid button-solid-ios hydrated" ion-activable="">Create Account</ion-button>
+        </div>
+      </form>
+  <!-- <ion-list>
     <ion-item *ngFor="let item of items">
       <ion-icon [name]="item.icon" slot="start"></ion-icon>
       {{item.title}}
@@ -18,7 +53,7 @@
         {{item.note}}
       </div>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
   <!--
     <div *ngIf="selectedItem" padding>
       You navigated here from <b>{{selectedItem.title }}</b>

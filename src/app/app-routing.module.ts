@@ -14,7 +14,10 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  }
+  },
+  { path: 'InscripcionAtletas', loadChildren: './inscripcion-atletas/inscripcion-atletas.module#InscripcionAtletasPageModule' },
+  { path: 'AtletasInscroitos', loadChildren: './atletas-inscroitos/atletas-inscroitos.module#AtletasInscroitosPageModule' },
+  { path: 'Reportes', loadChildren: './reportes/reportes.module#ReportesPageModule' }
 ];
 
 @NgModule({
