@@ -6,7 +6,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = "http://localhost:1337/localhost:3000/api/classroom";
+const apiUrl = " http://fdc75fa6.ngrok.io/api/";
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +54,13 @@ export class RestService {
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  getCategorias(): Observable<any> {
+    const url = `${apiUrl}categorias`;
+    return this.http.get(url, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
   }
   
   private handleError(error: HttpErrorResponse) {
