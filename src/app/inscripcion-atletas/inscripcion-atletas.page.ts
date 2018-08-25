@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../rest.service';
 import { LoadingController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -9,13 +10,14 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./inscripcion-atletas.page.scss'],
 })
 export class InscripcionAtletasPage implements OnInit {
-  public categorias : any;
+  public categorias: any;
   constructor(
-    public api: RestService, 
-    public loadingController: LoadingController
+    public api: RestService,
+    public loadingController: LoadingController,
+    public toastController: ToastController
   ) {
-    this.getCategorias();
-   }
+    //this.getCategorias();
+  }
 
   ngOnInit() {
   }
@@ -33,5 +35,24 @@ export class InscripcionAtletasPage implements OnInit {
         console.log(err);
         loading.dismiss();
       });
+  }
+  async saveAtleta() {
+    const loading = await this.loadingController.create({
+      content: 'Loading'
+    });
+    await loading.present();
+
+    let hideFooterTimeout = setTimeout(() => {
+      this.otrafunction(loading);
+    }, 2000);
+  }
+  async otrafunction(loading){
+    const toast = await this.toastController.create({
+      message: 'Atleta Almacenado Exitosamente',
+      duration: 2000,
+      position : 'middle' 
+    });
+    loading.dismiss();
+    toast.present();
   }
 }
