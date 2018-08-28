@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <form>
+
     <ion-card>
       <ion-card-content>
         <ion-grid>
@@ -17,8 +17,8 @@
             <ion-col>
               <ion-list class="list list-ios hydrated">
                 <ion-item>
-                  <ion-label position="floating">DPI</ion-label>
-                  <ion-input></ion-input>
+                  <ion-label position="floating" >DPI</ion-label>
+                  <ion-input [(ngModel)]="atleta.dpi" type="number"></ion-input>
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -26,7 +26,7 @@
               <ion-list class="list list-ios hydrated">
                 <ion-item>
                   <ion-label position="floating">Nombres</ion-label>
-                  <ion-input></ion-input>
+                  <ion-input [(ngModel)]="atleta.nombres"></ion-input>
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -34,7 +34,7 @@
               <ion-list class="list list-ios hydrated">
                 <ion-item>
                   <ion-label position="floating">Apellidos</ion-label>
-                  <ion-input></ion-input>
+                  <ion-input [(ngModel)]="atleta.apellidos"></ion-input>
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -45,9 +45,9 @@
               <ion-list class="list list-ios hydrated">
                 <ion-item>
                   <ion-label position="floating">Género</ion-label>
-                  <ion-select value="brown" ok-text="Aceptar" cancel-text="Cancelar">
-                    <ion-select-option value="brown">Masculino</ion-select-option>
-                    <ion-select-option value="blonde">Blonde</ion-select-option>
+                  <ion-select value="brown" ok-text="Aceptar" cancel-text="Cancelar" [(ngModel)]="atleta.genero">
+                    <ion-select-option value="M">Masculino</ion-select-option>
+                    <ion-select-option value="F">Femenino</ion-select-option>
                   </ion-select>
                 </ion-item>
               </ion-list>
@@ -56,15 +56,15 @@
               <ion-list class="list list-ios hydrated">
                 <ion-item>
                   <ion-label position="floating">Fecha Nacimiento</ion-label>
-                  <ion-datetime display-format="MM/DD/YYYY"></ion-datetime>
+                  <ion-datetime display-format="MM/DD/YYYY" [(ngModel)]="atleta.fechaNacimiento"></ion-datetime>
                 </ion-item>
               </ion-list>
             </ion-col>
             <ion-col>
               <ion-list class="list list-ios hydrated">
                 <ion-item>
-                  <ion-label position="floating">Telefono</ion-label>
-                  <ion-input></ion-input>
+                  <ion-label position="floating" >Telefono</ion-label>
+                  <ion-input [(ngModel)]="atleta.telefono"></ion-input>
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -73,8 +73,8 @@
             <ion-col>
               <ion-list class="list list-ios hydrated">
                 <ion-item>
-                  <ion-label position="floating">Correo</ion-label>
-                  <ion-input></ion-input>
+                  <ion-label position="floating" >Correo</ion-label>
+                  <ion-input [(ngModel)]="atleta.correo"></ion-input>
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -82,7 +82,7 @@
               <ion-list class="list list-ios hydrated">
                 <ion-item>
                   <ion-label position="floating">Dirección</ion-label>
-                  <ion-input></ion-input>
+                  <ion-input [(ngModel)]="atleta.direccion"></ion-input>
 
                 </ion-item>
               </ion-list>
@@ -91,7 +91,7 @@
               <ion-list class="list list-ios hydrated">
                 <ion-item>
                   <ion-label position="floating">Pais</ion-label>
-                  <ion-input></ion-input>
+                  <ion-input [(ngModel)]="atleta.pais"></ion-input>
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -101,33 +101,28 @@
               <ion-list class="list list-ios hydrated">
                 <ion-item>
                   <ion-label position="floating">Atleta Elite?</ion-label>
-                  <ion-checkbox color="primary"></ion-checkbox>
+                  <ion-checkbox color="primary" [(ngModel)]="atleta.elite"></ion-checkbox>
                 </ion-item>
               </ion-list>
             </ion-col>
             <ion-col>
               <ion-list class="list list-ios hydrated">
                 <ion-item>
-                  <ion-label position="floating">Categoria</ion-label>
-                  <ion-select value="brown" ok-text="Aceptar" cancel-text="Cancelar">
-                    <ion-select-option value="brown">Libre Masculino</ion-select-option>
-                    <ion-select-option value="blonde">Libre Femenino</ion-select-option>
-                    <ion-select-option value="blonde">Master Femenino</ion-select-option>
-                    <ion-select-option value="blonde">Elite Femenino</ion-select-option>
-                  </ion-select>
+                 {{atleta.categoria}}
                 </ion-item>
               </ion-list>
             </ion-col>
           </ion-row>
-          <ion-row>
+          <ion-row text-center>
             <ion-list class="list list-ios hydrated">
               <ion-item>
-                <ion-button expand="block" (click)="saveAtleta()" >Inscribir</ion-button>
               </ion-item>
             </ion-list>
           </ion-row>
         </ion-grid>
+        <ion-button expand="block" (click)="saveAtleta()">Inscribir Atleta</ion-button>
+
       </ion-card-content>
     </ion-card>
-  </form>
+
 </ion-content>

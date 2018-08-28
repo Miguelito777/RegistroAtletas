@@ -6,7 +6,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = " http://fdc75fa6.ngrok.io/api/";
+const apiUrl = "http://6d0cc633.ngrok.io/api/";
 
 @Injectable({
   providedIn: 'root'

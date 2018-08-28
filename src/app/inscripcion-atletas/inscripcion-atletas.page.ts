@@ -11,12 +11,16 @@ import { ToastController } from '@ionic/angular';
 })
 export class InscripcionAtletasPage implements OnInit {
   public categorias: any;
+  public atleta : any;
+
   constructor(
     public api: RestService,
     public loadingController: LoadingController,
     public toastController: ToastController
   ) {
-    //this.getCategorias();
+    this.getCategorias();
+    this.atleta = {
+    };
   }
 
   ngOnInit() {
@@ -37,6 +41,7 @@ export class InscripcionAtletasPage implements OnInit {
       });
   }
   async saveAtleta() {
+    console.log(this.atleta);
     const loading = await this.loadingController.create({
       content: 'Loading'
     });
