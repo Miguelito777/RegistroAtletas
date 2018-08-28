@@ -1,9 +1,5 @@
 {
   "name": "RegistroAtletas",
   "integrations": {},
-  "type": "angular",
-  "proxies": [{
-    "path": "/api/",
-    "proxyUrl": " http://fdc75fa6.ngrok.io"
-  }]
+  "type": "angular"
 }

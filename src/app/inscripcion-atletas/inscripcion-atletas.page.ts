@@ -12,6 +12,7 @@ import { ToastController } from '@ionic/angular';
 export class InscripcionAtletasPage implements OnInit {
   public categorias: any;
   public atleta : any;
+  public currentYear = 2018;
 
   constructor(
     public api: RestService,
@@ -59,5 +60,48 @@ export class InscripcionAtletasPage implements OnInit {
     });
     loading.dismiss();
     toast.present();
+  }
+  async getCategoria(){
+    if(this.atleta.fechaNacimiento == undefined){
+      
+    }else{
+      if(this.atleta.genero == undefined){
+
+      }else{
+        this.atleta.categoriaInscripcion = this.getCategoriaAgeGen(this.getAge(this.atleta.fechaNacimiento.year.value,this.currentYear),this.atleta.genero);        
+      }
+    }
+    /*const toast = await this.toastController.create({
+      message: 'Calculate Categoría',
+      duration: 2000,
+      position : 'middle' 
+    });
+    toast.present();*/
+  }
+  private getAge(init, current){
+    let age = current - init;
+    return age;
+  }
+  public verifyElite(){
+    if(this.atleta.elite){
+      this.atleta.categoriaInscripcion = "Elite";
+    }else{
+      this.getCategoria();
+    }
+  }
+  private getCategoriaAgeGen(age,gen){
+    if(this.atleta.elite){
+      return "Elite";
+    }else{
+      if(age < 39){
+        if(gen == 'F'){
+          return "Libre Femenino";
+        }else{
+          return "Libre Masculino";
+        }
+      }else{
+        return "Master Masculino";
+      }
+    }
   }
 }

@@ -10,119 +10,122 @@
 </ion-header>
 <ion-content>
 
-    <ion-card>
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-list class="list list-ios hydrated">
-                <ion-item>
-                  <ion-label position="floating" >DPI</ion-label>
-                  <ion-input [(ngModel)]="atleta.dpi" type="number"></ion-input>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-            <ion-col>
-              <ion-list class="list list-ios hydrated">
-                <ion-item>
-                  <ion-label position="floating">Nombres</ion-label>
-                  <ion-input [(ngModel)]="atleta.nombres"></ion-input>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-            <ion-col>
-              <ion-list class="list list-ios hydrated">
-                <ion-item>
-                  <ion-label position="floating">Apellidos</ion-label>
-                  <ion-input [(ngModel)]="atleta.apellidos"></ion-input>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col>
-              <ion-list class="list list-ios hydrated">
-                <ion-item>
-                  <ion-label position="floating">Género</ion-label>
-                  <ion-select value="brown" ok-text="Aceptar" cancel-text="Cancelar" [(ngModel)]="atleta.genero">
-                    <ion-select-option value="M">Masculino</ion-select-option>
-                    <ion-select-option value="F">Femenino</ion-select-option>
-                  </ion-select>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-            <ion-col>
-              <ion-list class="list list-ios hydrated">
-                <ion-item>
-                  <ion-label position="floating">Fecha Nacimiento</ion-label>
-                  <ion-datetime display-format="MM/DD/YYYY" [(ngModel)]="atleta.fechaNacimiento"></ion-datetime>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-            <ion-col>
-              <ion-list class="list list-ios hydrated">
-                <ion-item>
-                  <ion-label position="floating" >Telefono</ion-label>
-                  <ion-input [(ngModel)]="atleta.telefono"></ion-input>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-list class="list list-ios hydrated">
-                <ion-item>
-                  <ion-label position="floating" >Correo</ion-label>
-                  <ion-input [(ngModel)]="atleta.correo"></ion-input>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-            <ion-col>
-              <ion-list class="list list-ios hydrated">
-                <ion-item>
-                  <ion-label position="floating">Dirección</ion-label>
-                  <ion-input [(ngModel)]="atleta.direccion"></ion-input>
-
-                </ion-item>
-              </ion-list>
-            </ion-col>
-            <ion-col>
-              <ion-list class="list list-ios hydrated">
-                <ion-item>
-                  <ion-label position="floating">Pais</ion-label>
-                  <ion-input [(ngModel)]="atleta.pais"></ion-input>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-list class="list list-ios hydrated">
-                <ion-item>
-                  <ion-label position="floating">Atleta Elite?</ion-label>
-                  <ion-checkbox color="primary" [(ngModel)]="atleta.elite"></ion-checkbox>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-            <ion-col>
-              <ion-list class="list list-ios hydrated">
-                <ion-item>
-                 {{atleta.categoria}}
-                </ion-item>
-              </ion-list>
-            </ion-col>
-          </ion-row>
-          <ion-row text-center>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
             <ion-list class="list list-ios hydrated">
               <ion-item>
+                <ion-label position="floating">DPI</ion-label>
+                <ion-input [(ngModel)]="atleta.dpi" type="number"></ion-input>
               </ion-item>
             </ion-list>
-          </ion-row>
-        </ion-grid>
-        <ion-button expand="block" (click)="saveAtleta()">Inscribir Atleta</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-list class="list list-ios hydrated">
+              <ion-item>
+                <ion-label position="floating">Nombres</ion-label>
+                <ion-input [(ngModel)]="atleta.nombres" type="text"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col>
+            <ion-list class="list list-ios hydrated">
+              <ion-item>
+                <ion-label position="floating">Apellidos</ion-label>
+                <ion-input [(ngModel)]="atleta.apellidos"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
 
-      </ion-card-content>
-    </ion-card>
+        <ion-row>
+          <ion-col>
+            <ion-list class="list list-ios hydrated">
+              <ion-item>
+                <ion-label position="floating">Fecha Nacimiento</ion-label>
+                <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="atleta.fechaNacimiento" (ionChange)="getCategoria();" value="12/10/1993"></ion-datetime>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col>
+            <ion-list class="list list-ios hydrated">
+              <ion-item>
+                <ion-label position="floating">Género</ion-label>
+                <ion-select value="brown" ok-text="Aceptar" cancel-text="Cancelar" [(ngModel)]="atleta.genero" (ionChange)="getCategoria();">
+                  <ion-select-option value="M">Masculino</ion-select-option>
+                  <ion-select-option value="F">Femenino</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col>
+            <ion-list class="list list-ios hydrated">
+              <ion-item>
+                <ion-label position="floating">Telefono</ion-label>
+                <ion-input [(ngModel)]="atleta.telefono" type="number"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-list class="list list-ios hydrated">
+              <ion-item>
+                <ion-label position="floating">Correo</ion-label>
+                <ion-input [(ngModel)]="atleta.correo"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col>
+            <ion-list class="list list-ios hydrated">
+              <ion-item>
+                <ion-label position="floating">Dirección</ion-label>
+                <ion-input [(ngModel)]="atleta.direccion"></ion-input>
+
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col>
+            <ion-list class="list list-ios hydrated">
+              <ion-item>
+                <ion-label position="floating">Pais</ion-label>
+                <ion-input [(ngModel)]="atleta.pais"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-list class="list list-ios hydrated">
+              <ion-item>
+                <ion-label position="floating">Atleta Elite?</ion-label>
+                <ion-checkbox color="primary" [(ngModel)]="atleta.elite" (ionChange) = "verifyElite();"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col>
+            <ion-list class="list list-ios hydrated">
+              <ion-item>
+                <ion-label position="floating">Número de Atleta</ion-label>
+                <ion-input [(ngModel)]="atleta.numero" type="number"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col>
+            <ion-list class="list list-ios hydrated">
+              <ion-item text-center>
+                <ion-label position="floating">Categoría Asignada</ion-label>
+                <ion-input value="{{atleta.categoriaInscripcion}}" disabled></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-button expand="block" (click)="saveAtleta()">Inscribir Atleta</ion-button>
+
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

@@ -6,10 +6,10 @@ import { catchError, tap, map } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin':'*'
+    "Access-Control-Allow-Origin": "*"  
   })
 };
-const apiUrl = "http://6d0cc633.ngrok.io/api/";
+const apiUrl = "https://baconipsum.com/api/?type=meat-and-filler";
 
 @Injectable({
   providedIn: 'root'
@@ -60,7 +60,7 @@ export class RestService {
   }
 
   getCategorias(): Observable<any> {
-    const url = `${apiUrl}categorias`;
+    const url = `${apiUrl}`;
     return this.http.get(url, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
