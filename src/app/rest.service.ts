@@ -6,10 +6,10 @@ import { catchError, tap, map } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    "Access-Control-Allow-Origin": "*"  
+    'Access-Control-Allow-Origin': '*' 
   })
 };
-const apiUrl = "https://baconipsum.com/api/?type=meat-and-filler";
+const apiUrl = "http://f81e5ac7.ngrok.io/api/";
 
 @Injectable({
   providedIn: 'root'
@@ -60,12 +60,19 @@ export class RestService {
   }
 
   getCategorias(): Observable<any> {
-    const url = `${apiUrl}`;
-    return this.http.get(url, httpOptions).pipe(
+    const url = `${apiUrl}categorias/`;
+    return this.http.get(url).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
   
+  getCompeticion(): Observable<any> {
+    const url = `${apiUrl}competicion/`;
+    return this.http.get(url).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

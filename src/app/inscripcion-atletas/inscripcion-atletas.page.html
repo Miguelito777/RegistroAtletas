@@ -74,7 +74,7 @@
             <ion-list class="list list-ios hydrated">
               <ion-item>
                 <ion-label position="floating">Correo</ion-label>
-                <ion-input [(ngModel)]="atleta.correo"></ion-input>
+                <ion-input [(ngModel)]="atleta.email"></ion-input>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -101,7 +101,7 @@
             <ion-list class="list list-ios hydrated">
               <ion-item>
                 <ion-label position="floating">Atleta Elite?</ion-label>
-                <ion-checkbox color="primary" [(ngModel)]="atleta.elite" (ionChange) = "verifyElite();"></ion-checkbox>
+                <ion-checkbox color="primary" [(ngModel)]="atleta.elite" (ionChange)="verifyElite();"></ion-checkbox>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -122,6 +122,16 @@
             </ion-list>
           </ion-col>
         </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-list class="list list-ios hydrated">
+              <ion-item>
+                <ion-label position="floating">Comentarios</ion-label>
+                <ion-input [(ngModel)]="atleta.descripcion"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          </ion-row>
       </ion-grid>
       <ion-button expand="block" (click)="saveAtleta()">Inscribir Atleta</ion-button>
 

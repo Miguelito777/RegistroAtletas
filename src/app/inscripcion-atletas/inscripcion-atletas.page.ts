@@ -11,6 +11,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class InscripcionAtletasPage implements OnInit {
   public categorias: any;
+  public competicion: any;
   public atleta : any;
   public currentYear = 2018;
 
@@ -19,6 +20,7 @@ export class InscripcionAtletasPage implements OnInit {
     public loadingController: LoadingController,
     public toastController: ToastController
   ) {
+    this.getCompeticion();
     this.getCategorias();
     this.atleta = {
     };
@@ -28,30 +30,35 @@ export class InscripcionAtletasPage implements OnInit {
   }
   async getCategorias() {
     const loading = await this.loadingController.create({
-      content: 'Loading'
+      content: 'Categorias'
     });
     await loading.present();
     await this.api.getCategorias()
       .subscribe(res => {
         this.categorias = res;
-        console.log(this.categorias);
+        //console.log(this.categorias);
         loading.dismiss();
       }, err => {
         console.log(err);
         loading.dismiss();
       });
   }
-  async saveAtleta() {
-    console.log(this.atleta);
+  async getCompeticion() {
     const loading = await this.loadingController.create({
-      content: 'Loading'
+      content: 'Competicion'
     });
     await loading.present();
-
-    let hideFooterTimeout = setTimeout(() => {
-      this.otrafunction(loading);
-    }, 2000);
+    await this.api.getCompeticion()
+      .subscribe(res => {
+        this.competicion = res[0];
+        //console.log(this.categorias);
+        loading.dismiss();
+      }, err => {
+        console.log(err);
+        loading.dismiss();
+      });
   }
+
   async otrafunction(loading){
     const toast = await this.toastController.create({
       message: 'Atleta Almacenado Exitosamente',
@@ -95,13 +102,41 @@ export class InscripcionAtletasPage implements OnInit {
     }else{
       if(age < 39){
         if(gen == 'F'){
-          return "Libre Femenino";
+          for(var i in this.categorias){
+            if(this.categorias[0].nombre == "Libre Femenino"){
+              this.atleta.id_categoria = this.categorias[0].id;
+              return "Libre Femenino";
+            }
+          }
         }else{
-          return "Libre Masculino";
+          for(var i in this.categorias){
+            if(this.categorias[0].nombre == "Libre Masculino"){
+              this.atleta.id_categoria = this.categorias[0].id;
+              return "Libre Masculino";
+            }
+          }
         }
       }else{
-        return "Master Masculino";
+        for(var i in this.categorias){
+          if(this.categorias[0].nombre == "Master Masculino"){
+            this.atleta.id_categoria = this.categorias[0].id;
+            return "Master Masculino";
+          }
+        }
       }
     }
+  }
+
+  async saveAtleta() {
+    this.atleta.id_competicion = this.competicion.id;
+    console.log(this.atleta);
+    const loading = await this.loadingController.create({
+      content: 'Loading'
+    });
+    await loading.present();
+
+    let hideFooterTimeout = setTimeout(() => {
+      this.otrafunction(loading);
+    }, 2000);
   }
 }
