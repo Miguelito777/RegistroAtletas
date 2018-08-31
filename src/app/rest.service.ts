@@ -11,7 +11,7 @@ const httpOptions = {
     'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
   })
 };
-const apiUrl = "http://0dc44976.ngrok.io/api/";
+const apiUrl = "http://47c03c40.ngrok.io/api/";
 
 @Injectable({
   providedIn: 'root'
@@ -37,15 +37,12 @@ export class RestService {
       catchError(this.handleError));
   }
   
-  postAtleta(data, token): Observable<any> {
-    const url = `${apiUrl}atletas`;
-    console.log(httpOptions);
-    httpOptions.headers.append('X-CSRF-TOKEN' , token);
-    console.log(httpOptions);
-    return this.http.post(url, data, httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
+  postAtleta(data): Observable<any> {
+    let api = 'nombres='+data.nombres+'&apellidos='+data.apellidos+'&dpi='+data.dpi+'&genero='+data.genero+'&telefono='+data.telefono+'&fecha_nacimiento='+data.fecha_nacimiento+'&email='+data.email+'&descripcion='+data.descripcion+'&id_categoria='+data.id_categoria+'&pais='+data.pais+'&direccion='+data.direccion;
+    const url = `${apiUrl}Registro?${api}`;
+    return this.http.get(url).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
   }
   
   updateClassroom(id: string, data): Observable<any> {

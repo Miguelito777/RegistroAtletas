@@ -91,6 +91,7 @@ export class InscripcionAtletasPage implements OnInit {
   }
   public verifyElite(){
     if(this.atleta.elite){
+      this.atleta.id_categoria = 4;
       this.atleta.categoriaInscripcion = "Elite";
     }else{
       this.getCategoria();
@@ -101,25 +102,25 @@ export class InscripcionAtletasPage implements OnInit {
       return "Elite";
     }else{
       if(age < 39){
-        if(gen == 'F'){
+        if(gen == 'Femenino'){
           for(var i in this.categorias){
-            if(this.categorias[0].nombre == "Libre Femenino"){
-              this.atleta.id_categoria = this.categorias[0].id;
+            if(this.categorias[i].nombre == "Libre Femenino"){
+              this.atleta.id_categoria = this.categorias[i].id;
               return "Libre Femenino";
             }
           }
         }else{
           for(var i in this.categorias){
-            if(this.categorias[0].nombre == "Libre Masculino"){
-              this.atleta.id_categoria = this.categorias[0].id;
+            if(this.categorias[i].nombre == "Libre Masculino"){
+              this.atleta.id_categoria = this.categorias[i].id;
               return "Libre Masculino";
             }
           }
         }
       }else{
         for(var i in this.categorias){
-          if(this.categorias[0].nombre == "Master Masculino"){
-            this.atleta.id_categoria = this.categorias[0].id;
+          if(this.categorias[i].nombre == "Master Masculino"){
+            this.atleta.id_categoria = this.categorias[i].id;
             return "Master Masculino";
           }
         }
@@ -145,7 +146,7 @@ export class InscripcionAtletasPage implements OnInit {
         toast.present();
     }else{
       this.atleta.id_competicion = this.competicion.id;
-      this.atleta.fecha_nacimiento = new Date(this.atleta.fechaNacimiento.year.value, this.atleta.fechaNacimiento.month.value, this.atleta.fechaNacimiento.day.value);
+      this.atleta.fecha_nacimiento = this.atleta.fechaNacimiento.year.value+"-"+this.atleta.fechaNacimiento.month.value+"-"+this.atleta.fechaNacimiento.day.value;
       this.saveNewAtleta();
       /*const loading = await this.loadingController.create({
         content: 'Almacenando Atleta'
@@ -159,19 +160,42 @@ export class InscripcionAtletasPage implements OnInit {
   }
   async saveNewAtleta(){
     console.log(this.atleta);
-    let token = this.getToken();
-    await this.api.postAtleta(this.atleta,token)
+    const loading = await this.loadingController.create({
+      content: 'Competicion'
+    });
+    await loading.present();
+    await this.api.postAtleta(this.atleta)
     .subscribe(res => {
+      loading.dismiss();
         console.log(res);
+        this.atletaInscrito();
         /*let id = res['id'];
         this.router.navigate(['/detail/'+id]);*/
       }, (err) => {
         console.log(err);
+        loading.dismiss();
+        this.errorInscripcion();
       });
   }
   getToken() {
     let token = document.querySelector('meta[property="csrf-token"]')
     ['content'];
      return token;
+   }
+   async atletaInscrito(){
+    const toast = await this.toastController.create({
+      message: 'Excelente!! Atleta Inscrito Correctamente.',
+      duration: 2000,
+      position : 'middle' 
+    });
+    toast.present();
+   }
+   async errorInscripcion(){
+    const toast = await this.toastController.create({
+      message: 'Error al inscribir al atleta.',
+      duration: 2000,
+      position : 'middle' 
+    });
+    toast.present();
    }
 }

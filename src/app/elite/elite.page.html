@@ -8,20 +8,13 @@
   <!-- Default Searchbar -->
   <ion-searchbar></ion-searchbar>
   <ion-list>
-    <ion-item>
-      <ion-label>Juan Carlos Monroy</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Mario David Velasquez</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Leonardo Tale</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Pedro David </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Carlos Saul</ion-label>
+    <ion-item *ngFor="let cr of Elite" routerLink="/detail/{{cr.id}}">
+      <ion-icon name="desktop" slot="start"></ion-icon>
+      {{cr.nombres}} {{cr.apellidos}} 
+      <div class="item-note" slot="end">
+        <!-- {{cr.createdAt | date}} -->
+        {{cr.direccion}}
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>

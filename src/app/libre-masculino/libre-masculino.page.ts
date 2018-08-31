@@ -10,6 +10,8 @@ import { ToastController } from '@ionic/angular';
 })
 export class LibreMasculinoPage implements OnInit {
   LibreMasculino : Array<Object> = [];
+  idCategoria = 1;
+
   constructor(
     public api: RestService, 
     public loadingController: LoadingController,
