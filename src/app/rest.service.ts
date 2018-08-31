@@ -11,7 +11,7 @@ const httpOptions = {
     'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
   })
 };
-const apiUrl = "http://47c03c40.ngrok.io/api/";
+const apiUrl = "localhost:8000/api/";
 
 @Injectable({
   providedIn: 'root'
