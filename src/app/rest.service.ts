@@ -6,10 +6,12 @@ import { catchError, tap, map } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*' 
+    'Accept': 'application/json',
+    'Access-Control-Allow-Origin' : '*',
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
   })
 };
-const apiUrl = "http://f81e5ac7.ngrok.io/api/";
+const apiUrl = "http://0dc44976.ngrok.io/api/";
 
 @Injectable({
   providedIn: 'root'
@@ -28,15 +30,18 @@ export class RestService {
       catchError(this.handleError));
   }
   
-  getClassroomById(id: string): Observable<any> {
-    const url = `${apiUrl}/${id}`;
-    return this.http.get(url, httpOptions).pipe(
+  getAtletaById(id: string): Observable<any> {
+    const url = `${apiUrl}atletas/${id}`;
+  return this.http.get(url/*, httpOptions*/).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
   
-  postClassroom(data): Observable<any> {
-    const url = `${apiUrl}/add_with_students`;
+  postAtleta(data, token): Observable<any> {
+    const url = `${apiUrl}atletas`;
+    console.log(httpOptions);
+    httpOptions.headers.append('X-CSRF-TOKEN' , token);
+    console.log(httpOptions);
     return this.http.post(url, data, httpOptions)
       .pipe(
         catchError(this.handleError)
@@ -51,7 +56,7 @@ export class RestService {
       );
   }
   
-  deleteClassroom(id: string): Observable<{}> {
+  deleteAtleta(id: string): Observable<{}> {
     const url = `${apiUrl}/${id}`;
     return this.http.delete(url, httpOptions)
       .pipe(
@@ -68,6 +73,13 @@ export class RestService {
   
   getCompeticion(): Observable<any> {
     const url = `${apiUrl}competicion/`;
+    return this.http.get(url).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
+
+  getAtletas(): Observable<any> {
+    const url = `${apiUrl}atletas/`;
     return this.http.get(url).pipe(
       map(this.extractData),
       catchError(this.handleError));

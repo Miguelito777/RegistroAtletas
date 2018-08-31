@@ -128,15 +128,50 @@ export class InscripcionAtletasPage implements OnInit {
   }
 
   async saveAtleta() {
-    this.atleta.id_competicion = this.competicion.id;
-    console.log(this.atleta);
-    const loading = await this.loadingController.create({
-      content: 'Loading'
-    });
-    await loading.present();
-
-    let hideFooterTimeout = setTimeout(() => {
-      this.otrafunction(loading);
-    }, 2000);
+    if(this.atleta.dpi == undefined || 
+      this.atleta.id_categoria == undefined ||
+      this.atleta.numero == undefined ||
+      this.atleta.dpi == '' || 
+      this.atleta.id_categoria == '' ||
+      this.atleta.numero == '' ||
+      this.atleta.dpi == null ||
+      this.atleta.id_categoria == null ||
+      this.atleta.numero == null){
+        const toast = await this.toastController.create({
+          message: 'Llenar todos los campos',
+          duration: 2000,
+          position : 'middle' 
+        });
+        toast.present();
+    }else{
+      this.atleta.id_competicion = this.competicion.id;
+      this.atleta.fecha_nacimiento = new Date(this.atleta.fechaNacimiento.year.value, this.atleta.fechaNacimiento.month.value, this.atleta.fechaNacimiento.day.value);
+      this.saveNewAtleta();
+      /*const loading = await this.loadingController.create({
+        content: 'Almacenando Atleta'
+      });
+      await loading.present();
+  
+      let hideFooterTimeout = setTimeout(() => {
+        this.otrafunction(loading);
+      }, 2000);*/
+    }
   }
+  async saveNewAtleta(){
+    console.log(this.atleta);
+    let token = this.getToken();
+    await this.api.postAtleta(this.atleta,token)
+    .subscribe(res => {
+        console.log(res);
+        /*let id = res['id'];
+        this.router.navigate(['/detail/'+id]);*/
+      }, (err) => {
+        console.log(err);
+      });
+  }
+  getToken() {
+    let token = document.querySelector('meta[property="csrf-token"]')
+    ['content'];
+     return token;
+   }
 }

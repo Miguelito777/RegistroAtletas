@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
 import { RestService } from '../rest.service';
+import { LoadingController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-libre-masculino',
@@ -8,30 +9,30 @@ import { RestService } from '../rest.service';
   styleUrls: ['./libre-masculino.page.scss'],
 })
 export class LibreMasculinoPage implements OnInit {
-  LibreMasculino: any;
+  LibreMasculino : Array<Object> = [];
   constructor(
     public api: RestService, 
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    public toastController: ToastController
   ) { }
 
   ngOnInit() {
-
+    this.getAtletasLibreMasculino();
   }
 
-  async getClassrooms() {
+  async getAtletasLibreMasculino() {
     const loading = await this.loadingController.create({
-      content: 'Loading'
+      content: 'Libre Masculino'
     });
     await loading.present();
-    await this.api.getClassroom()
+    await this.api.getAtletas()
       .subscribe(res => {
         console.log(res);
-        this.LibreMasculino = res;
+        this.LibreMasculino = res.atletas;
         loading.dismiss();
       }, err => {
         console.log(err);
         loading.dismiss();
       });
   }
-
 }
