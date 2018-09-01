@@ -27,9 +27,8 @@ export class LibreMasculinoPage implements OnInit {
       content: 'Libre Masculino'
     });
     await loading.present();
-    await this.api.getAtletas()
+    await this.api.getAtletasCategoria(this.idCategoria)
       .subscribe(res => {
-        console.log(res);
         this.LibreMasculino = res.atletas;
         loading.dismiss();
       }, err => {

@@ -10,7 +10,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class MasterMasculinoPage implements OnInit {
   MasterMasculino : Array<Object> = [];
-  idCategoria = 1;
+  idCategoria = 3;
 
   constructor(
     public api: RestService, 
@@ -26,7 +26,7 @@ export class MasterMasculinoPage implements OnInit {
       content: 'Master Masculino'
     });
     await loading.present();
-    await this.api.getAtletas()
+    await this.api.getAtletasCategoria(this.idCategoria)
       .subscribe(res => {
         console.log(res);
         this.MasterMasculino = res.atletas;

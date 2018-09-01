@@ -7,21 +7,9 @@
 
 <ion-content padding>
     <ion-item-group>
-        <ion-item>
-            <ion-label>Categoria Elite</ion-label>
-            <ion-badge color="primary" slot="start">11</ion-badge>
+        <ion-item *ngFor="let cr of reportes">
+            <ion-label>{{cr.Categoria}}</ion-label>
+            <ion-badge color="primary" slot="start">{{cr.total}}</ion-badge>
           </ion-item>
-        <ion-item>
-          <ion-label>Categoria Libre Masculino</ion-label>
-          <ion-badge color="secondary" slot="start">22</ion-badge>
-        </ion-item>
-        <ion-item>
-          <ion-label>Cateoria Libre Femenino</ion-label>
-          <ion-badge color="tertiary" slot="start">33</ion-badge>
-        </ion-item>
-        <ion-item>
-          <ion-label>Categoria Master Masculino</ion-label>
-          <ion-badge color="success" slot="start">44</ion-badge>
-        </ion-item>
       </ion-item-group>
   </ion-content>

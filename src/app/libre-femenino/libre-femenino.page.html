@@ -1,16 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>LibreFemenino</ion-title>
+    <ion-title>Libre Femenino</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <!-- Default Searchbar -->
-<ion-searchbar></ion-searchbar>
+<!--<ion-searchbar></ion-searchbar>-->
 <ion-list>
   <ion-item *ngFor="let cr of LibreFemenino" routerLink="/detail/{{cr.id}}">
     <ion-icon name="desktop" slot="start"></ion-icon>
-    {{cr.nombres}} {{cr.apellidos}} 
+    <h1>{{cr.numero}}</h1> - {{cr.nombres}} {{cr.apellidos}} 
     <div class="item-note" slot="end">
       <!-- {{cr.createdAt | date}} -->
       {{cr.direccion}}

@@ -11,7 +11,7 @@ import { ToastController } from '@ionic/angular';
 export class ElitePage implements OnInit {
   
   Elite : Array<Object> = [];
-  idCategoria = 1;
+  idCategoria = 4;
 
   constructor(
     public api: RestService, 
@@ -27,7 +27,7 @@ export class ElitePage implements OnInit {
       content: 'Elite'
     });
     await loading.present();
-    await this.api.getAtletas()
+    await this.api.getAtletasCategoria(this.idCategoria)
       .subscribe(res => {
         console.log(res);
         this.Elite = res.atletas;

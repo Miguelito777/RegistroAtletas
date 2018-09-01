@@ -11,7 +11,7 @@ const httpOptions = {
     'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
   })
 };
-const apiUrl = "localhost:8000/api/";
+const apiUrl = "http://7a984568.ngrok.io/api/";
 
 @Injectable({
   providedIn: 'root'
@@ -38,13 +38,19 @@ export class RestService {
   }
   
   postAtleta(data): Observable<any> {
-    let api = 'nombres='+data.nombres+'&apellidos='+data.apellidos+'&dpi='+data.dpi+'&genero='+data.genero+'&telefono='+data.telefono+'&fecha_nacimiento='+data.fecha_nacimiento+'&email='+data.email+'&descripcion='+data.descripcion+'&id_categoria='+data.id_categoria+'&pais='+data.pais+'&direccion='+data.direccion;
+    let api = 'nombres='+data.nombres+'&apellidos='+data.apellidos+'&dpi='+data.dpi+'&genero='+data.genero+'&telefono='+data.telefono+'&fecha_nacimiento='+data.fecha_nacimiento+'&email='+data.email+'&descripcion='+data.descripcion+'&id_categoria='+data.id_categoria+'&pais='+data.pais+'&direccion='+data.direccion+'&numero='+data.numero;
     const url = `${apiUrl}Registro?${api}`;
     return this.http.get(url).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
-  
+  putAtleta(data): Observable<any> {
+    let api = 'nombres='+data.nombres+'&apellidos='+data.apellidos+'&dpi='+data.dpi+'&genero='+data.genero+'&telefono='+data.telefono+'&fecha_nacimiento='+data.fecha_nacimiento+'&email='+data.email+'&descripcion='+data.descripcion+'&id_categoria='+data.id_categoria+'&pais='+data.pais+'&direccion='+data.direccion+'&numero='+data.numero+'&id='+data.id;
+    const url = `${apiUrl}atletas/${data.id}`;
+    return this.http.put(url,data).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
   updateClassroom(id: string, data): Observable<any> {
     const url = `${apiUrl}/${id}`;
     return this.http.put(url, data, httpOptions)
@@ -77,6 +83,20 @@ export class RestService {
 
   getAtletas(): Observable<any> {
     const url = `${apiUrl}atletas/`;
+    return this.http.get(url).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
+  
+  getReporte(): Observable<any> {
+    const url = `${apiUrl}AtletasCategoria`;
+    return this.http.get(url).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
+
+  getAtletasCategoria(idCategoria): Observable<any> {
+    const url = `${apiUrl}ByCategoria/${idCategoria}`;
     return this.http.get(url).pipe(
       map(this.extractData),
       catchError(this.handleError));

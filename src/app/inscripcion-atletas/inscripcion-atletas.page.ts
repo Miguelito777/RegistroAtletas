@@ -161,7 +161,7 @@ export class InscripcionAtletasPage implements OnInit {
   async saveNewAtleta(){
     console.log(this.atleta);
     const loading = await this.loadingController.create({
-      content: 'Competicion'
+      content: 'Almacenando Atleta'
     });
     await loading.present();
     await this.api.postAtleta(this.atleta)

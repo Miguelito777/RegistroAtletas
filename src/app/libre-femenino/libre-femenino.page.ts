@@ -25,7 +25,7 @@ export class LibreFemeninoPage implements OnInit {
       content: 'Libre Femenino'
     });
     await loading.present();
-    await this.api.getAtletas()
+    await this.api.getAtletasCategoria(this.idCategoria)
       .subscribe(res => {
         console.log(res);
         this.LibreFemenino = res.atletas;

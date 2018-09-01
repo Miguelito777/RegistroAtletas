@@ -10,7 +10,7 @@
 <ion-list>
   <ion-item *ngFor="let cr of MasterMasculino" routerLink="/detail/{{cr.id}}">
     <ion-icon name="desktop" slot="start"></ion-icon>
-    {{cr.nombres}} {{cr.apellidos}} 
+    <h1>{{cr.numero}}</h1> - {{cr.nombres}} {{cr.apellidos}} 
     <div class="item-note" slot="end">
       <!-- {{cr.createdAt | date}} -->
       {{cr.direccion}}
