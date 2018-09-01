@@ -1,14 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>MasterMasculino</ion-title>
+    <ion-title>Master Masculino {{totalInscritos}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <!-- Default Searchbar -->
-<ion-searchbar></ion-searchbar>
+  <!-- Default Searchbar 
+<ion-searchbar></ion-searchbar>-->
 <ion-list>
-  <ion-item *ngFor="let cr of MasterMasculino" routerLink="/detail/{{cr.id}}">
+    <ion-button ion-button (click)='printReport()' >Imprimir Reporte</ion-button>
+    <ion-item *ngFor="let cr of MasterMasculino" routerLink="/detail/{{cr.id}}">
     <ion-icon name="desktop" slot="start"></ion-icon>
     <h1>{{cr.numero}}</h1> - {{cr.nombres}} {{cr.apellidos}} 
     <div class="item-note" slot="end">

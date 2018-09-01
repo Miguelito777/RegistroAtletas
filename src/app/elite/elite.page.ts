@@ -12,6 +12,7 @@ export class ElitePage implements OnInit {
   
   Elite : Array<Object> = [];
   idCategoria = 4;
+  totalInscritos = 0;
 
   constructor(
     public api: RestService, 
@@ -22,6 +23,9 @@ export class ElitePage implements OnInit {
   ngOnInit() {
     this.getElite();
   }
+  public printReport(){
+    this.api.makePdf(this.Elite,'Elite');
+  }
   async getElite() {
     const loading = await this.loadingController.create({
       content: 'Elite'
@@ -31,6 +35,7 @@ export class ElitePage implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.Elite = res.atletas;
+        this.totalInscritos = this.Elite.length;
         loading.dismiss();
       }, err => {
         console.log(err);

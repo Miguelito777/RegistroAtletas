@@ -6,6 +6,7 @@ import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Valida
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.page.html',
@@ -74,6 +75,14 @@ export class EditPage implements OnInit {
         console.log(err);
         loading.dismiss();
       });
+  }
+  public verifyElite(){
+    if(this.atleta.elite){
+      this.atleta.id_categoria = 4;
+      this.atleta.categoriaInscripcion = "Elite";
+    }else{
+      this.getCategoria();
+    }
   }
   async getAtletaById(id) {
     const loading = await this.loadingController.create({

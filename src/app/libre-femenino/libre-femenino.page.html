@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Libre Femenino</ion-title>
+    <ion-title>Libre Femenino {{totalInscritos}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,6 +8,7 @@
   <!-- Default Searchbar -->
 <!--<ion-searchbar></ion-searchbar>-->
 <ion-list>
+    <ion-button ion-button (click)='printReport()' >Imprimir Reporte</ion-button>
   <ion-item *ngFor="let cr of LibreFemenino" routerLink="/detail/{{cr.id}}">
     <ion-icon name="desktop" slot="start"></ion-icon>
     <h1>{{cr.numero}}</h1> - {{cr.nombres}} {{cr.apellidos}} 

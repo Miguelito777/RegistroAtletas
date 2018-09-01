@@ -11,6 +11,7 @@ import { ToastController } from '@ionic/angular';
 export class LibreFemeninoPage implements OnInit {
   LibreFemenino : Array<Object> = [];
   idCategoria = 2;
+  totalInscritos = 0;
   constructor(
     public api: RestService, 
     public loadingController: LoadingController,
@@ -19,6 +20,9 @@ export class LibreFemeninoPage implements OnInit {
 
   ngOnInit() {
     this.getAtletasLibreFemenino();
+  }
+  public printReport(){
+    this.api.makePdf(this.LibreFemenino,'LF');
   }
   async getAtletasLibreFemenino() {
     const loading = await this.loadingController.create({
@@ -29,6 +33,7 @@ export class LibreFemeninoPage implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.LibreFemenino = res.atletas;
+        this.totalInscritos = this.LibreFemenino.length;
         loading.dismiss();
       }, err => {
         console.log(err);
